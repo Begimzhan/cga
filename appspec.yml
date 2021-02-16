@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: /html
+    destination: /var/www/html
+    
+hooks:
+  BeforeInstall:
+    - location: ./scripts/BeforeInstall.sh
+      runas: root
+  AfterInstall:
+    - location: ./scripts/AfterInstall.sh
+      timeout: 180
+  ApplicationStop:
+    - location: ./scripts/ApplicationStop.sh
+      timeout: 3600
+      runas: root
+  ApplicationStart:
+    - location: ./script/ApplicationStop.sh
+      timeout: 3600
